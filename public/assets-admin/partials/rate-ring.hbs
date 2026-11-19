@@ -1,0 +1,4 @@
+{{! a 16px progress ring; pathLength=100 lets the dash array be the percent itself }}
+<svg width="18" height="18" viewBox="0 0 18 18" class="-rotate-90 {{#if (gte value 90)}}text-primary{{else}}text-info{{/if}}" aria-hidden="true">
+  <circle cx="9" cy="9" r="7.5" fill="none" stroke="currentColor" stroke-width="1.75" pathLength="100" stroke-dasharray="{{value}} 100" />
+</svg>

@@ -1,0 +1,72 @@
+<aside
+  class="offcanvas-lg offcanvas-start w-(--sidebar-width) border-default bg-default lg:sticky lg:top-0 lg:h-dvh lg:border-e"
+  tabindex="-1"
+  id="sidebar"
+  aria-label="Main navigation"
+>
+  <div class="flex h-full flex-col">
+    {{! hamburger + logo (the hamburger closes the menu on small screens) }}
+    <div class="flex h-(--topbar-height) shrink-0 items-center gap-3 ps-6">
+      <button
+        type="button"
+        class="btn btn-icon size-auto p-0 text-muted lg:hidden"
+        data-bs-dismiss="offcanvas"
+        data-bs-target="#sidebar"
+        aria-label="Close navigation"
+      >
+        {{> icons/menu}}
+      </button>
+      {{> logo}}
+    </div>
+
+    <nav class="grow overflow-y-auto px-3 pt-3">
+      <div class="list-group gap-0">
+        {{#each @root.site.nav}}
+          {{#if children}}
+            {{! always-open group (Authentication): a heading row + its pages }}
+            <div class="list-group-item flex h-13 items-center gap-2.5 rounded-[10px] border-0 ps-[15px] pe-3">
+              {{> (concat 'icons/' icon) class="text-muted"}}
+              <span class="grow">{{name}}</span>
+            </div>
+            {{#each children}}
+              <a
+                href="{{@root.root}}{{href}}"
+                class="list-group-item list-group-item-action flex h-11 items-center rounded-[10px] border-0 ps-[49px] text-muted"
+              >
+                {{name}}
+              </a>
+            {{/each}}
+          {{else if href}}
+            <a
+              href="{{@root.root}}{{href}}"
+              class="list-group-item list-group-item-action flex h-13 items-center gap-2.5 rounded-[10px] border-0 ps-[15px] pe-3 {{#if (eq page ../page)}}active{{/if}}"
+              {{#if (eq page ../page)}}aria-current="page"{{/if}}
+            >
+              {{#if (eq page ../page)}}{{> (concat 'icons/' icon) class="text-primary"}}{{else}}{{> (concat 'icons/' icon) class="text-muted"}}{{/if}}
+              <span class="grow">{{name}}</span>
+              {{#if chevron}}{{> icons/chevron-right class="text-muted"}}{{/if}}
+              {{#if badge}}<span class="badge badge-secondary size-6 justify-center p-0 text-xs font-normal">{{badge}}</span>{{/if}}
+            </a>
+          {{else}}
+            {{! no page yet: Hummingbird's disabled list item (not focusable, subtle color) }}
+            <span class="list-group-item disabled flex h-13 items-center gap-2.5 rounded-[10px] border-0 ps-[15px] pe-3" aria-disabled="true">
+              {{> (concat 'icons/' icon)}}
+              <span class="grow">{{name}}</span>
+              {{#if chevron}}{{> icons/chevron-right}}{{/if}}
+              {{#if badge}}<span class="badge badge-secondary size-6 justify-center p-0 text-xs font-normal opacity-60">{{badge}}</span>{{/if}}
+            </span>
+          {{/if}}
+        {{/each}}
+      </div>
+    </nav>
+
+    <div class="px-6 pt-6 pb-5">
+      <p class="mb-2.5 text-base text-default">{{@root.site.name}} UI Kit</p>
+      <p class="mb-0 leading-[1.75] text-muted">
+        Want to get more info<br />
+        about {{@root.site.name}}?
+        <a href="#" class="link link-primary underline underline-offset-2">Contact us</a>
+      </p>
+    </div>
+  </div>
+</aside>

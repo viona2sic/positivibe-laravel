@@ -1,0 +1,224 @@
+@import 'tailwindcss';
+@import '@hummingbirdui/hummingbird';
+
+/* Light only: Hummingbird's dark palette follows the OS setting by default.
+ * Bind `dark` to a `.dark` class instead — Rhombus never adds it, so dark mode stays off. */
+@custom-variant dark (&:where(.dark, .dark *));
+:root {
+  color-scheme: light;
+}
+
+/* classes built from data (site.json) — keep them in the CSS */
+@source inline('{bg-,text-}{primary,secondary,info,warning}{,-light,-lighter}');
+@source inline('progress-bar bg-{primary,secondary,info,warning}');
+
+/*
+ * Rhombus theme
+ * -------------
+ * Everything below re-skins Hummingbird the documented way:
+ *   1. theme variables (@theme)  → colors, surfaces, text, borders, font, input/button scale
+ *   2. component variables       → .btn, .card, .table, .progress, .list-group, ...
+ * so every component instance picks the Rhombus look up automatically.
+ */
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+
+  /* brand colors */
+  --color-primary-lighter: #efecf4;
+  --color-primary-light: #a08cc2;
+  --color-primary: #775da6;
+  --color-primary-dark: #634c8d;
+  --color-primary-darker: #3d2f57;
+
+  --color-secondary-lighter: #feeeed;
+  --color-secondary-light: #ffb1b7;
+  --color-secondary: #f9837c;
+  --color-secondary-dark: #e86b64;
+  --color-secondary-darker: #8f3a35;
+
+  --color-info-lighter: #eaf5f7;
+  --color-info-light: #a3d1d8;
+  --color-info: #70b6c1;
+  --color-info-dark: #579ea9;
+  --color-info-darker: #2d5d65;
+
+  --color-warning-lighter: #fdf7e5;
+  --color-warning-light: #f8de95;
+  --color-warning: #f3cc5c;
+  --color-warning-dark: #dcb33f;
+  --color-warning-darker: #7d6419;
+
+  /* the design's alert color is the coral secondary */
+  --color-danger-lighter: #feeeed;
+  --color-danger-light: #ffb1b7;
+  --color-danger: #f9837c;
+  --color-danger-dark: #e86b64;
+  --color-danger-darker: #8f3a35;
+
+  /* surfaces */
+  --background-color-default: #ffffff;
+  --background-color-subtle: #f9f9f9;
+  --background-color-muted: #f3f3f3;
+  --background-color-highlight: #ebebeb;
+  --background-color-emphasis: #dcdcdc;
+
+  /* text */
+  --text-color-subtle: #b9b9b9;
+  --text-color-muted: #898989;
+  --text-color-default: #202020;
+  --text-color-highlight: #202020;
+  --text-color-emphasis: #000000;
+  --color-neutral: #202020;
+
+  /* borders */
+  --border-color-subtle: #ececec;
+  --border-color-muted: #e3e3e3;
+  --border-color-default: #dcdcdc;
+  --border-color-highlight: #c7c7c7;
+  --border-color-emphasis: #898989;
+
+  /* the soft card shadow from the design */
+  --shadow-card: 0 1px 4px 0 rgb(0 0 0 / 0.06);
+
+  /* shared input + button scale: 40px tall controls, 4px corners, 16px text */
+  --input-btn-font-size: var(--text-sm);
+  --input-btn-border-radius: 8px;
+  --input-btn-padding-x: --spacing(4);
+  --input-btn-padding-y: --spacing(2.25);
+  --input-btn-line-height: 1.5;
+
+  /* reboot: 14px body text */
+  --body-font-size: var(--text-sm);
+
+  --topbar-height: 4.5rem; /* 72px incl. border */
+  --sidebar-width: 15.625rem; /* 250px */
+}
+
+/* ---------- Components ----------
+ * Unlayered on purpose: Hummingbird sets component variables inside its utilities layer,
+ * so plain rules here are what re-skin every instance (the documented "local variables" option). */
+/* Buttons: 128 × 40, medium weight */
+.btn {
+  --btn-height: 2.5rem;
+  --btn-font-weight: var(--font-weight-medium);
+  --btn-padding-x: --spacing(3.5);
+  --btn-padding-y: 0;
+  min-width: 8rem;
+  gap: --spacing(2);
+}
+.btn-icon {
+  min-width: 0;
+}
+/* white outlined button ("Download") */
+.btn-outline-neutral {
+  --btn-bg: var(--background-color-default);
+  --btn-border-color: var(--border-color-default);
+  --btn-hover-bg: var(--background-color-subtle);
+}
+
+/* Cards: white, borderless, 8px corners, soft shadow */
+.card {
+  --card-bg: var(--background-color-default);
+  --card-color: var(--text-color-default);
+  --card-font-size: var(--body-font-size);
+  --card-border-width: 0;
+  --card-border-radius: 8px;
+  --card-padding-x: --spacing(8);
+  --card-padding-y: --spacing(8);
+  --card-title-color: var(--text-color-default);
+  --card-title-font-weight: var(--font-weight-semibold);
+  box-shadow: var(--shadow-card);
+}
+.card-title {
+  font-size: var(--text-2xl);
+  line-height: 1.2;
+}
+.card-subtitle {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-normal);
+  color: var(--text-color-muted);
+}
+
+/* Inputs: subtle fill, no border (search); bordered variant for the todo field */
+.form-control {
+  --input-bg: var(--background-color-subtle);
+  --input-border-color: transparent;
+  --input-hover-bg: var(--background-color-muted);
+  --input-focus-bg: var(--background-color-default);
+  --input-focus-border-color: var(--color-primary);
+}
+.form-control::placeholder {
+  color: var(--text-color-muted);
+}
+.form-control-bordered {
+  --input-bg: var(--background-color-default);
+  --input-border-color: var(--border-color-default);
+  --input-hover-bg: var(--background-color-default);
+}
+
+/* Progress: thin 4px bar on a gray track, square ends */
+.progress {
+  --progress-height: 4px;
+  --progress-bg: var(--border-color-default);
+  --progress-border-radius: 0;
+}
+
+/* Table: header rule only, 72px rows, odd rows striped like the design */
+.table {
+  --table-color: var(--text-color-default);
+  --table-font-size: var(--text-sm);
+  --table-line-height: 1.5;
+  --table-cell-padding-x: --spacing(4);
+  --table-cell-padding-y: --spacing(4);
+  --table-border-width: 0;
+  --table-head-color: var(--text-color-muted);
+  --table-striped-bg: var(--background-color-subtle);
+  --table-striped-color: var(--text-color-default);
+}
+.table > thead > tr > th {
+  font-weight: var(--font-weight-normal);
+  border-bottom: 1px solid var(--border-color-default);
+}
+.table > tbody > tr > * {
+  height: 4.5rem;
+}
+.table-striped-odd > tbody > tr:nth-of-type(odd) > * {
+  --table-bg: var(--table-striped-bg);
+  --table-color: var(--table-striped-color);
+}
+
+/* Checkboxes: 18px squares */
+.form-check-input {
+  --form-check-input-with: 1.125rem;
+  --form-check-input-height: 1.125rem;
+  --form-check-input-border-width: 2px;
+  --form-check-input-border-radius: 2px;
+}
+.form-check-input:not(:checked) {
+  --form-check-input-border-color: var(--text-color-muted);
+}
+
+/* Sidebar nav: 52px rows, 10px corners, muted icons, purple-tint active row */
+.list-group {
+  --list-group-bg: transparent;
+  --list-group-padding-y: 0;
+  --list-group-color: var(--text-color-default);
+  --list-group-item-padding-x: --spacing(4.5);
+  --list-group-item-padding-y: 0;
+  --list-group-item-font-size: 1.03125rem; /* 16.5px */
+  --list-group-action-color: var(--text-color-default);
+  --list-group-hover-bg: var(--background-color-subtle);
+  --list-group-hover-color: var(--text-color-default);
+  --list-group-active-bg: var(--color-primary-lighter);
+  --list-group-active-color: var(--text-color-default);
+}
+
+.dropdown-menu {
+  --dropdown-font-size: var(--text-sm);
+  --dropdown-border-radius: 8px;
+  --dropdown-box-shadow: 0 4px 16px 0 rgb(0 0 0 / 0.1);
+}
+
+.offcanvas-backdrop {
+  z-index: 40;
+}

@@ -1,0 +1,308 @@
+{
+  "name": "Rhombus",
+  "description": "Rhombus — a CRM admin dashboard template built with Hummingbird UI and Tailwind CSS.",
+  "user": {
+    "name": "Katie Pena",
+    "firstName": "Katie",
+    "role": "Admin",
+    "avatar": "images/avatars/katie.webp"
+  },
+  "nav": [
+    {
+      "page": "dashboard",
+      "name": "Overview",
+      "icon": "dashboard",
+      "href": "index.html"
+    },
+    {
+      "name": "Authentication",
+      "icon": "lock",
+      "children": [
+        {
+          "page": "signin",
+          "name": "Sign In",
+          "href": "signin.html"
+        },
+        {
+          "page": "signup",
+          "name": "Sign Up",
+          "href": "signup.html"
+        }
+      ]
+    },
+    {
+      "name": "Companies",
+      "icon": "business"
+    },
+    {
+      "name": "Deals",
+      "icon": "briefcase-check",
+      "chevron": true
+    },
+    {
+      "name": "Contacts",
+      "icon": "account-box"
+    },
+    {
+      "name": "Reports",
+      "icon": "assignment",
+      "chevron": true
+    },
+    {
+      "name": "Calendar",
+      "icon": "event-note"
+    },
+    {
+      "name": "Message",
+      "icon": "email",
+      "badge": 8
+    },
+    {
+      "name": "Documents",
+      "icon": "description"
+    }
+  ],
+  "stats": [
+    {
+      "value": "$22,880.50",
+      "label": "Won from 18 Deals",
+      "icon": "briefcase-check",
+      "color": "primary",
+      "percent": 67
+    },
+    {
+      "value": "$1,096.30",
+      "label": "Daily average income",
+      "icon": "account-balance-wallet",
+      "color": "secondary",
+      "percent": 18
+    },
+    {
+      "value": "33.98%",
+      "label": "Lead coversation",
+      "icon": "trending-up",
+      "color": "info",
+      "percent": 78
+    },
+    {
+      "value": "778",
+      "label": "Campaign sent",
+      "icon": "send",
+      "color": "warning",
+      "percent": 80
+    }
+  ],
+  "emails": [
+    {
+      "name": "send",
+      "value": 860,
+      "percent": 45,
+      "color": "primary"
+    },
+    {
+      "name": "open",
+      "value": 730,
+      "percent": 45,
+      "color": "secondary-light"
+    },
+    {
+      "name": "spam",
+      "value": 234,
+      "percent": 10,
+      "color": "info"
+    }
+  ],
+  "income": [
+    {
+      "label": "Target",
+      "value": "841",
+      "up": true
+    },
+    {
+      "label": "Last week",
+      "value": "234",
+      "up": false
+    },
+    {
+      "label": "Last moonth",
+      "value": "3278",
+      "up": true
+    }
+  ],
+  "performers": [
+    {
+      "name": "Mathilda Bell",
+      "amount": "$8,192.000",
+      "avatar": "images/avatars/mathilda.webp",
+      "leads": 187,
+      "deals": 154,
+      "tasks": 28,
+      "rate": 100
+    },
+    {
+      "name": "Marion Figueroa",
+      "amount": "$6,100.000",
+      "avatar": "images/avatars/marion.webp",
+      "leads": 235,
+      "deals": 148,
+      "tasks": 21,
+      "rate": 90
+    },
+    {
+      "name": "Lee Barrett",
+      "amount": "$4,220.000",
+      "avatar": "images/avatars/lee.webp",
+      "leads": 365,
+      "deals": 126,
+      "tasks": 10,
+      "rate": 75
+    },
+    {
+      "name": "Joseph Brooks",
+      "amount": "$1,628.000",
+      "avatar": "images/avatars/joseph.webp",
+      "leads": 458,
+      "deals": 110,
+      "tasks": 9,
+      "rate": 60
+    }
+  ],
+  "tasks": {
+    "total": 8,
+    "items": [
+      {
+        "title": "Marketing dashboard app",
+        "done": false
+      },
+      {
+        "title": "Create new version 4.0",
+        "done": false
+      },
+      {
+        "title": "User Testing",
+        "done": true
+      },
+      {
+        "title": "Design system",
+        "done": true
+      },
+      {
+        "title": "Awesome task",
+        "done": false
+      },
+      {
+        "title": "Marketing dahsboard concept",
+        "done": true
+      }
+    ]
+  },
+  "incomeBars": [
+    {
+      "month": "January",
+      "amount": "$2,440",
+      "height": 61
+    },
+    {
+      "month": "February",
+      "amount": "$2,280",
+      "height": 57
+    },
+    {
+      "month": "March",
+      "amount": "$1,960",
+      "height": 49
+    },
+    {
+      "month": "April",
+      "amount": "$1,840",
+      "height": 46
+    },
+    {
+      "month": "May",
+      "amount": "$2,920",
+      "height": 73
+    },
+    {
+      "month": "June",
+      "amount": "$2,400",
+      "height": 60
+    },
+    {
+      "month": "July",
+      "amount": "$2,880",
+      "height": 72
+    },
+    {
+      "month": "August",
+      "amount": "$3,400",
+      "height": 85
+    },
+    {
+      "month": "September",
+      "amount": "$4,000",
+      "height": 100
+    },
+    {
+      "month": "October",
+      "amount": "$3,640",
+      "height": 91
+    },
+    {
+      "month": "November",
+      "amount": "$2,960",
+      "height": 74
+    },
+    {
+      "month": "December",
+      "amount": "$2,800",
+      "height": 70
+    }
+  ],
+  "signup": {
+    "phone": "800 1301 448",
+    "features": [
+      {
+        "icon": "monetization-on",
+        "title": "Absolutely FREE",
+        "text": "No hidden charges, No credit card required"
+      },
+      {
+        "icon": "view-quilt",
+        "title": "Fast & Easy",
+        "text": "Get access instantly, no downloads required"
+      },
+      {
+        "icon": "account-box",
+        "title": "Your Own Data",
+        "text": "Enjoy the Free Trial with your company data"
+      },
+      {
+        "icon": "stars",
+        "title": "Unlimited Features",
+        "text": "Access all features of the world's #1 business software!"
+      }
+    ],
+    "countries": [
+      {
+        "code": "us",
+        "name": "United States",
+        "dial": "+1"
+      },
+      {
+        "code": "gb",
+        "name": "United Kingdom",
+        "dial": "+44"
+      },
+      {
+        "code": "ca",
+        "name": "Canada",
+        "dial": "+1"
+      },
+      {
+        "code": "au",
+        "name": "Australia",
+        "dial": "+61"
+      }
+    ]
+  }
+}

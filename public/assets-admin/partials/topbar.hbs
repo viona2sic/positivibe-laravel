@@ -1,0 +1,53 @@
+<header class="sticky top-0 z-10 flex h-(--topbar-height) items-center gap-4 border-b border-default bg-default px-4 sm:px-6 lg:px-8">
+  <button
+    type="button"
+    class="btn btn-icon size-auto p-0 text-muted lg:hidden"
+    data-bs-toggle="offcanvas"
+    data-bs-target="#sidebar"
+    aria-controls="sidebar"
+    aria-label="Open navigation"
+  >
+    {{> icons/menu}}
+  </button>
+  <h1 class="sr-only">{{title}}</h1>
+
+  <form class="hidden w-full max-w-75 md:block" role="search" action="#">
+    <div class="input-group-icon">
+      {{> icons/search size=18 class="form-control-icon-start start-2 text-muted"}}
+      <input type="search" class="form-control h-8 py-0 ps-7.5" placeholder="Search..." aria-label="Search" />
+    </div>
+  </form>
+
+  <div class="ms-auto flex items-center gap-4 lg:-me-2">
+    <a href="#" class="text-muted hover:text-default" aria-label="Help">{{> icons/help}}</a>
+
+    <div class="dropdown">
+      <button type="button" class="relative flex text-muted hover:text-default" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Notifications">
+        {{> icons/notifications}}
+        <span class="absolute end-0.5 top-0.5 size-1.5 rounded-full bg-secondary ring-2 ring-white"></span>
+      </button>
+      <div class="dropdown-menu dropdown-menu-end w-72">
+        <h6 class="dropdown-header">Notifications</h6>
+        <a class="dropdown-item" href="#">New deal won from Lee Barrett</a>
+        <a class="dropdown-item" href="#">3 tasks are due today</a>
+        <a class="dropdown-item" href="#">Campaign "Spring" was sent</a>
+      </div>
+    </div>
+
+    <div class="dropdown ms-2.5">
+      <button type="button" class="flex items-center gap-2 text-start" data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="{{@root.root}}{{@root.site.user.avatar}}" alt="" class="size-8 rounded-full object-cover" />
+        <span class="hidden leading-tight sm:block">
+          <span class="block text-sm text-default">{{@root.site.user.name}}</span>
+          <span class="block text-xs text-muted">{{@root.site.user.role}}</span>
+        </span>
+      </button>
+      <div class="dropdown-menu dropdown-menu-end">
+        <a class="dropdown-item" href="#">Profile</a>
+        <a class="dropdown-item" href="#">Settings</a>
+        <hr class="dropdown-divider" />
+        <a class="dropdown-item" href="{{@root.root}}signin.html">Sign out</a>
+      </div>
+    </div>
+  </div>
+</header>

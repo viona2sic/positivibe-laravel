@@ -42,15 +42,21 @@
       <button type="button" class="flex items-center gap-2 text-start cursor-pointer border-0 bg-transparent p-0" data-bs-toggle="dropdown" aria-expanded="false">
         <img src="{{ asset('assets-admin/' . ($site['user']['avatar'] ?? 'images/avatars/katie.webp')) }}" alt="" class="size-8 rounded-full object-cover" />
         <span class="hidden leading-tight sm:block">
-          <span class="block text-sm font-semibold text-default">{{ $site['user']['name'] ?? 'Admin' }}</span>
-          <span class="block text-xs text-muted">{{ $site['user']['role'] ?? 'User' }}</span>
+          <span class="block text-sm font-semibold text-default">{{ Auth::guard('admin')->user()->name ?? ($site['user']['name'] ?? 'Admin') }}</span>
+          <span class="block text-xs text-muted">{{ ucfirst(Auth::guard('admin')->user()->role ?? ($site['user']['role'] ?? 'Admin')) }}</span>
         </span>
       </button>
       <div class="dropdown-menu hidden absolute right-0 mt-2 w-44 bg-white border border-[#dcdcdc] rounded-lg shadow-lg z-20 py-1">
-        <a class="block px-4 py-2 text-sm text-default hover:bg-gray-100 no-underline" href="#">Profile</a>
-        <a class="block px-4 py-2 text-sm text-default hover:bg-gray-100 no-underline" href="#">Settings</a>
-        <hr class="my-1 border-t border-[#dcdcdc]" />
-        <a class="block px-4 py-2 text-sm text-default hover:bg-gray-100 no-underline" href="#">Sign out</a>
+        <div class="px-4 py-2 border-b border-[#dcdcdc] sm:hidden">
+          <span class="block text-sm font-semibold text-default">{{ Auth::guard('admin')->user()->name ?? 'Admin' }}</span>
+          <span class="block text-xs text-muted">{{ Auth::guard('admin')->user()->email ?? '' }}</span>
+        </div>
+        <form method="POST" action="{{ route('admin.logout') }}" class="m-0">
+          @csrf
+          <button type="submit" class="w-full text-start px-4 py-2 text-sm text-red-600 hover:bg-gray-100 border-0 bg-transparent cursor-pointer">
+            Sign out
+          </button>
+        </form>
       </div>
     </div>
   </div>

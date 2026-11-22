@@ -35,11 +35,26 @@
 @extends('layouts.admin.app')
 
 @section('content')
+  {{-- Flash Alerts --}}
+  @if (session('success'))
+    <div class="mb-6 rounded-lg bg-green-50 p-4 border border-green-200 text-green-800 text-sm flex items-center gap-2">
+      <svg class="size-5 shrink-0 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+      <span>{{ session('success') }}</span>
+    </div>
+  @endif
+
+  @if (session('error'))
+    <div class="mb-6 rounded-lg bg-red-50 p-4 border border-red-200 text-red-800 text-sm flex items-center gap-2">
+      <svg class="size-5 shrink-0 text-red-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+      <span>{{ session('error') }}</span>
+    </div>
+  @endif
+
   <!-- Header / Greeting -->
   <div class="mb-7 flex flex-wrap items-start justify-between gap-6">
     <div>
-      <h2 class="mb-2 text-3xl font-bold text-default">Hi {{ $site['user']['name'] ?? 'User' }}</h2>
-      <p class="mb-0 text-sm text-muted">Welcome back to {{ $site['name'] ?? 'Rhombus' }} CRM dashboard</p>
+      <h2 class="mb-2 text-3xl font-bold text-default">Hi {{ Auth::guard('admin')->user()->name ?? ($site['user']['name'] ?? 'Admin') }}</h2>
+      <p class="mb-0 text-sm text-muted">Selamat datang di Panel Admin PositiVibe Studio</p>
     </div>
     <div class="flex flex-wrap gap-4 pt-1.5">
       <button type="button" class="btn btn-outline-neutral flex items-center gap-2">

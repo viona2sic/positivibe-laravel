@@ -77,14 +77,26 @@
                                                     class="img-fluid animate-spin">Docs</a>
                                         </li>
                                     </ul>
-                                    <div class="hstack gap-3">
-                                        <a href="sign-in.html"
-                                            class="btn btn-outline-light fs-6 bg-white px-3 py-2 text-dark w-50 hstack justify-content-center">Sign
-                                            In</a>
-                                        <a href="sign-up.html"
-                                            class="btn btn-dark text-white fs-6 bg-dark px-3 py-2 w-50 hstack justify-content-center">Sign
-                                            Up</a>
-                                    </div>
+                                    @if(Auth::guard('pelanggan')->check())
+                                        <div class="d-flex flex-column gap-2">
+                                            <a href="{{ route('pelanggan.dashboard') }}"
+                                                class="btn btn-primary fs-6 px-3 py-2 text-dark w-100 hstack justify-content-center">Dashboard</a>
+                                            <form method="POST" action="{{ route('pelanggan.logout') }}">
+                                                @csrf
+                                                <button type="submit"
+                                                    class="btn btn-outline-dark fs-6 px-3 py-2 text-dark w-100 hstack justify-content-center">Keluar</button>
+                                            </form>
+                                        </div>
+                                    @else
+                                        <div class="hstack gap-3">
+                                            <a href="{{ route('pelanggan.login') }}"
+                                                class="btn btn-outline-light fs-6 bg-white px-3 py-2 text-dark w-50 hstack justify-content-center">Sign
+                                                In</a>
+                                            <a href="{{ route('pelanggan.register') }}"
+                                                class="btn btn-dark text-white fs-6 bg-dark px-3 py-2 w-50 hstack justify-content-center">Sign
+                                                Up</a>
+                                        </div>
+                                    @endif
                                 </div>
                                 <div>
                                     <a class="text-dark" href="tel:+1-212-456-7890">+1-212-456-7890</a>

@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\User;
+use App\Models\UserAdmin;
+use App\Models\UserPelanggan;
 
 return [
 
@@ -42,6 +44,14 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'users_admin',
+        ],
+        'pelanggan' => [
+            'driver' => 'session',
+            'provider' => 'users_pelanggan',
+        ],
     ],
 
     /*
@@ -66,11 +76,14 @@ return [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', User::class),
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'users_admin' => [
+            'driver' => 'eloquent',
+            'model' => UserAdmin::class,
+        ],
+        'users_pelanggan' => [
+            'driver' => 'eloquent',
+            'model' => UserPelanggan::class,
+        ],
     ],
 
     /*
@@ -95,6 +108,18 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'users_admin' => [
+            'provider' => 'users_admin',
+            'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'users_pelanggan' => [
+            'provider' => 'users_pelanggan',
             'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
             'expire' => 60,
             'throttle' => 60,
